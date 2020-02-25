@@ -14,5 +14,8 @@ set -ex
             --disable-makeinstall-setuid \
             --without-systemdsystemunitdir
 make -j ${CPU_COUNT}
-make check TS_OPT_misc_setarch_known_fail=yes TS_OPT_column_invalid_multibyte_known_fail=yes
+make check \
+  TS_OPT_misc_setarch_known_fail=yes \
+  TS_OPT_column_invalid_multibyte_known_fail=yes \
+  TS_OPT_misc_fallocate_known_fail=yes
 make install
