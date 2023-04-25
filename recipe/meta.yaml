@@ -24,11 +24,9 @@ requirements:
     - zlib
     - ncurses
     - readline
+    - libuuid
   run:
     - python
-    - zlib
-    - ncurses
-    - readline
 
 test:
   commands:
