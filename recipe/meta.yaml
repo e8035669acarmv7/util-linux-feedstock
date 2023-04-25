@@ -10,7 +10,7 @@ source:
   sha256: 9e4b1c67eb13b9b67feb32ae1dc0d50e08ce9e5d82e1cccd0ee771ad2fa9e0b1
 
 build:
-  number: 1
+  number: 2
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('util-linux', max_pin='x.x') }}
@@ -24,11 +24,9 @@ requirements:
     - zlib
     - ncurses
     - readline
+    - libuuid
   run:
     - python
-    - zlib
-    - ncurses
-    - readline
 
 test:
   commands:
