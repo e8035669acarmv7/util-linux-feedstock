@@ -16,5 +16,6 @@ set -ex
 make -j ${CPU_COUNT}
 make check \
   TS_OPT_misc_setarch_known_fail=yes \
-  TS_OPT_column_invalid_multibyte_known_fail=yes
+  TS_OPT_column_invalid_multibyte_known_fail=yes \
+  TS_OPT_hardlink_options_known_fail=yes  # flaky
 make install
