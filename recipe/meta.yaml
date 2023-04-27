@@ -1,5 +1,5 @@
 {% set name = "util-linux" %}
-{% set version = "2.36" %}
+{% set version = "2.38" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ version }}/util-linux-{{ version }}.tar.xz
-  sha256: 9e4b1c67eb13b9b67feb32ae1dc0d50e08ce9e5d82e1cccd0ee771ad2fa9e0b1
+  sha256: 6d111cbe4d55b336db2f1fbeffbc65b89908704c01136371d32aa9bec373eb64
 
 build:
-  number: 3
+  number: 0
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('util-linux', max_pin='x.x') }}
