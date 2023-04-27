@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -ex
 
-# TODO: Remove the following once we update to CentOS 7.
-# These defines (extracted from Linux sources) are only needed for CentOS 6.
-export CPPFLAGS="${CPPFLAGS} -DCLOCK_BOOTTIME=7 -DO_PATH=010000000"
-
 ./configure --prefix="${PREFIX}" \
             --disable-chfn-chsh  \
             --disable-login      \

@@ -1,13 +1,14 @@
 {% set name = "util-linux" %}
-{% set version = "2.38" %}
+{% set version = "2.38.1" %}
+{% set major_minor = '.'.join(version.split('.')[:2]) %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ version }}/util-linux-{{ version }}.tar.xz
-  sha256: 6d111cbe4d55b336db2f1fbeffbc65b89908704c01136371d32aa9bec373eb64
+  url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ major_minor }}/util-linux-{{ version }}.tar.xz
+  sha256: 60492a19b44e6cf9a3ddff68325b333b8b52b6c59ce3ebd6a0ecaa4c5117e84f
 
 build:
   number: 0
@@ -17,6 +18,7 @@ build:
 
 requirements:
   build:
+    - sysroot_linux-64  2.17  # [linux64]
     - {{ compiler('c') }}
     - make
   host:
