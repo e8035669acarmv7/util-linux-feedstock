@@ -1,22 +1,24 @@
 {% set name = "util-linux" %}
-{% set version = "2.36" %}
+{% set version = "2.38.1" %}
+{% set major_minor = '.'.join(version.split('.')[:2]) %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ version }}/util-linux-{{ version }}.tar.xz
-  sha256: 9e4b1c67eb13b9b67feb32ae1dc0d50e08ce9e5d82e1cccd0ee771ad2fa9e0b1
+  url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ major_minor }}/util-linux-{{ version }}.tar.xz
+  sha256: 60492a19b44e6cf9a3ddff68325b333b8b52b6c59ce3ebd6a0ecaa4c5117e84f
 
 build:
-  number: 3
+  number: 0
   skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('util-linux', max_pin='x.x') }}
 
 requirements:
   build:
+    - sysroot_linux-64  2.17  # [linux64]
     - {{ compiler('c') }}
     - make
   host:
@@ -44,3 +46,4 @@ extra:
   recipe-maintainers:
     - jaimergp
     - scopatz
+    - hmaarrfk
