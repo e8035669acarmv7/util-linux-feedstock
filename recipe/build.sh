@@ -16,7 +16,7 @@ if [[ $target_platform == "osx-"* ]]; then
 
 fi
 
-autoreconf -vfi
+# autoreconf -vfi
 
 ./configure --prefix="${PREFIX}" \
             --disable-chfn-chsh  \
