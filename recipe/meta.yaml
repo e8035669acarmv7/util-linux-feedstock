@@ -29,6 +29,7 @@ requirements:
     - libtool
     - autoconf
     - automake
+    - pkg-config
   host:
     - python
     - zlib
