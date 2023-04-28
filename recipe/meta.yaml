@@ -26,6 +26,8 @@ requirements:
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - make
+    - libtool
+    - autoconf
   host:
     - python
     - zlib
@@ -37,7 +39,8 @@ requirements:
 
 test:
   commands:
-    - test -f "${PREFIX}/lib/libmount.so"
+    - test -f "${PREFIX}/lib/libmount.so"  # [linux]
+    - test -f "${PREFIX}/bin/hexdump"
 
 about:
   home: https://en.wikipedia.org/wiki/Util-linux
@@ -45,7 +48,7 @@ about:
   license_family: GPL
   license_file: COPYING
   summary: A random collection of Linux utilities
-  dev_url: https://github.com/karelzak/util-linux
+  dev_url: https://github.com/util-linux/util-linux
 
 extra:
   recipe-maintainers:

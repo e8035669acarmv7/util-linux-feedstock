@@ -3,6 +3,21 @@
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 set -ex
 
+OSX_ARGS=""
+if [[ $target_platform == "osx-"* ]]; then
+  # the following do not build on macOS
+  # wall is already on macOS
+  # uuid conflicts with ossp-uuid
+  OSX_ARGS="--disable-ipcs \
+            --disable-ipcrm \
+            --disable-wall \
+            --disable-libmount \
+            --enable-libuuid"
+
+fi
+
+autoreconf -vfi
+
 ./configure --prefix="${PREFIX}" \
             --disable-chfn-chsh  \
             --disable-login      \
@@ -14,7 +29,8 @@ set -ex
             --without-systemd    \
             --disable-makeinstall-chown \
             --disable-makeinstall-setuid \
-            --without-systemdsystemunitdir
+            --without-systemdsystemunitdir \
+            $OSX_ARGS
 make -j ${CPU_COUNT}
 
 known_fail="TS_OPT_misc_setarch_known_fail=yes"
