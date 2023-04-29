@@ -9,18 +9,27 @@ package:
 source:
   url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ major_minor }}/util-linux-{{ version }}.tar.xz
   sha256: 60492a19b44e6cf9a3ddff68325b333b8b52b6c59ce3ebd6a0ecaa4c5117e84f
+  patches:
+    - sys_vfs_h_osx.patch  # [osx]
 
 build:
-  number: 0
-  skip: true  # [not linux]
+  number: 1
+  skip: true  # [not unix]
   run_exports:
     - {{ pin_subpackage('util-linux', max_pin='x.x') }}
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - sysroot_linux-64  2.17  # [linux64]
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - make
+    - libtool
+    - autoconf
+    - automake
+    - pkg-config
   host:
     - python
     - zlib
@@ -32,7 +41,8 @@ requirements:
 
 test:
   commands:
-    - test -f "${PREFIX}/lib/libmount.so"
+    - test -f "${PREFIX}/lib/libmount.so"  # [linux]
+    - test -f "${PREFIX}/bin/hexdump"
 
 about:
   home: https://en.wikipedia.org/wiki/Util-linux
@@ -40,7 +50,7 @@ about:
   license_family: GPL
   license_file: COPYING
   summary: A random collection of Linux utilities
-  dev_url: https://github.com/karelzak/util-linux
+  dev_url: https://github.com/util-linux/util-linux
 
 extra:
   recipe-maintainers:
