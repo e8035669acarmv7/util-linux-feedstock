@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Get an updated config.sub and config.guess
-# cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 set -ex
 
 OSX_ARGS=""
@@ -15,8 +13,6 @@ if [[ $target_platform == "osx-"* ]]; then
             --enable-libuuid"
 
 fi
-
-# autoreconf -vfi
 
 ./configure --prefix="${PREFIX}" \
             --disable-chfn-chsh  \
