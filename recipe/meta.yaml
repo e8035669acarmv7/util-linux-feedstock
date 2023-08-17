@@ -1,5 +1,5 @@
 {% set name = "util-linux" %}
-{% set version = "2.38.1" %}
+{% set version = "2.39.2" %}
 {% set major_minor = '.'.join(version.split('.')[:2]) %}
 
 package:
@@ -8,12 +8,12 @@ package:
 
 source:
   url: https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v{{ major_minor }}/util-linux-{{ version }}.tar.xz
-  sha256: 60492a19b44e6cf9a3ddff68325b333b8b52b6c59ce3ebd6a0ecaa4c5117e84f
+  sha256: 87abdfaa8e490f8be6dde976f7c80b9b5ff9f301e1b67e3899e1f05a59a1531f
   patches:
     - sys_vfs_h_osx.patch  # [osx]
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not unix]
   run_exports:
     - {{ pin_subpackage('util-linux', max_pin='x.x') }}
