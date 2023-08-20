@@ -22,6 +22,7 @@ export CPPFLAGS="${CPPFLAGS} -DSIOCGSKNS=0x894C"
             --disable-chfn-chsh  \
             --disable-login      \
             --disable-nologin    \
+            --disable-uuidd      \
             --disable-su         \
             --disable-setpriv    \
             --disable-runuser    \
