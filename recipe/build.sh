@@ -46,6 +46,13 @@ if [[ $target_platform == linux-aarch64 ]]; then
   known_fail+=" TS_OPT_lsfd_mkfds_tcp6_known_fail=yes"
   known_fail+=" TS_OPT_lsfd_mkfds_udp6_known_fail=yes"
   known_fail+=" TS_OPT_lsfd_option_inet_known_fail=yes"
+  # script/options fails on pypy + aarch64 under emulation
+  known_fail+=" TS_OPT_script_options_known_fail=yes"
+fi
+if [[ $target_platform == linux-ppc64le ]]; then
+  # These tests seem to fail under emulation
+  known_fail+=" TS_OPT_fdisk_bsd_known_fail=yes"
+  known_fail+=" TS_OPT_kill_name_to_number_known_fail=yes"
 fi
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
 make check $known_fail
