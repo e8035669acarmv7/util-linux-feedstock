@@ -53,6 +53,7 @@ if [[ $target_platform == linux-ppc64le ]]; then
   # These tests seem to fail under emulation
   known_fail+=" TS_OPT_fdisk_bsd_known_fail=yes"
   known_fail+=" TS_OPT_kill_name_to_number_known_fail=yes"
+  known_fail+=" TS_OPT_kill_options_known_fail=yes"
   known_fail+=" TS_OPT_libmount_tabfiles_py_known_fail=yes"
 fi
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
