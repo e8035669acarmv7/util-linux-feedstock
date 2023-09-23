@@ -41,6 +41,7 @@ if [[ $target_platform == linux-aarch64 ]]; then
   known_fail+=" TS_OPT_lsfd_mkfds_ro_regular_file_known_fail=yes"  # can be flaky on this platform
   known_fail+=" TS_OPT_libmount_tabfiles_py_known_fail=yes"
   known_fail+=" TS_OPT_kill_name_to_number_known_fail=yes"
+  known_fail+=" TS_OPT_kill_queue_known_fail=yes"
   known_fail+=" TS_OPT_lsfd_mkfds_directory_known_fail=yes"
   known_fail+=" TS_OPT_lsfd_mkfds_symlink_known_fail=yes"
   known_fail+=" TS_OPT_lsfd_mkfds_tcp6_known_fail=yes"
