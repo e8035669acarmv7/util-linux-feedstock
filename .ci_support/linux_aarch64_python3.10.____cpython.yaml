@@ -28,8 +28,5 @@ readline:
 - '8'
 target_platform:
 - linux-aarch64
-zip_keys:
-- - python
-  - channel_sources
 zlib:
 - '1.2'
