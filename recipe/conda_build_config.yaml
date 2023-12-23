@@ -1,13 +1,5 @@
 MACOSX_SDK_VERSION:        # [osx and x86_64]
-  - "10.10"                # [osx and x86_64]
-# hmaarrfk -- not sure why, we got a static_assert undefined error
-# but it seems to be defined at the line where the error points to
-# in #include <assert.h>
-# https://github.com/util-linux/util-linux/blob/v2.39.3/include/xxhash.h#L1556
-c_compiler_version:        # [osx]
-  - 15                     # [osx]
-cxx_compiler_version:      # [osx]
-  - 15                     # [osx]
+  - "10.11"                # [osx and x86_64]
 cudnn:                                            # [linux64]
   - undefined                                     # [linux64]
 cuda_compiler_version:                            # [linux64]
