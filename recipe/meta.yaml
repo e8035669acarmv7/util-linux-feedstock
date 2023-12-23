@@ -11,7 +11,7 @@ source:
   sha256: 7b6605e48d1a49f43cc4b4cfc59f313d0dd5402fa40b96810bd572e167dfed0f
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not unix]
   run_exports:
     - {{ pin_subpackage('util-linux', max_pin='x.x') }}
@@ -34,6 +34,7 @@ requirements:
     - ncurses
     - readline
     - libuuid
+    - libxcrypt  # [linux]
   run:
     - python
 
