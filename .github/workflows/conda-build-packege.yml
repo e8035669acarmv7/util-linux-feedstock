@@ -1,0 +1,47 @@
+name: Build Conda packages with conda-build
+
+on: push
+
+jobs:
+  build-linux:
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+        - name: linux_armv7l_config_py310.yaml
+          config_file: .ci_support/linux_armv7l_config_py310.yaml
+        - name: linux_armv7l_config_py311.yaml
+          config_file: .ci_support/linux_armv7l_config_py311.yaml
+        - name: linux_armv7l_config_py312.yaml
+          config_file: .ci_support/linux_armv7l_config_py312.yaml
+        - name: linux_armv7l_config_py38.yaml
+          config_file: .ci_support/linux_armv7l_config_py38.yaml
+        - name: linux_armv7l_config_py39.yaml
+          config_file: .ci_support/linux_armv7l_config_py39.yaml
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker info
+      run: |
+        docker info
+
+    - name: Configure qemu
+      run: |
+        docker run --rm --privileged multiarch/qemu-user-static:register --reset -c yes
+
+    - name: Build using docker
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN  }}
+        CONFIG_FILE: ${{ matrix.config_file }}
+      run: |
+        pwd
+        FEEDSTOCK_ROOT=$(pwd)
+        docker run  \
+           -v "${FEEDSTOCK_ROOT}":/home/conda/feedstock_root \
+           -e ANACONDA_API_TOKEN \
+           -e CONFIG_FILE \
+           e8035669/linux-anvil-armv7l \
+           bash /home/conda/feedstock_root/.scripts/run_armv7l_build.sh
+
